@@ -17,6 +17,31 @@ namespace MvcApplication1.Controllers
         {
             return View(AlbumRepository.FindAll());
         }
-        
+
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(Album model)
+        {
+            if (ModelState.IsValid)
+            {
+                AlbumRepository.Add(model);
+                return RedirectToAction("Index", "Album");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error, Please correct");
+            }
+            return View(model);
+        }
+
+        public JsonResult CheckAlbumName(string name)
+        {
+            var result = AlbumRepository.FindAll().FindAll(x => x.Name.ToLower().Equals(name.ToLower())).Count == 0;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
