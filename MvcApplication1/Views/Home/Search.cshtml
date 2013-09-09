@@ -9,16 +9,39 @@
     @Html.ValidationSummary(true)
 
     @Html.TextBoxFor(m => m.term)
-    <input type="submit" value="Search" />
  }
 
-<h3>Search results for: @Model.term</h3>
+<input type="button" id="search" value="Search" />
 
-@foreach (var album in Model.Results)
-{
-    <div>@album.Name by @album.Artist (@album.Genre)</div>
-}
+<div id="searchResults"></div>
 
-<p>
-    @Html.ActionLink("See all", "Index", "Album") albums.
-</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+}    
+
+<script>
+
+    $("#search").click(search);
+
+    function search() {
+        alert("search");
+        var term = $("#term").val();
+        $.ajax({
+            url: "/Home/SearchAsync",
+            data: JSON.stringify({ term: term }),
+            type: "POST",
+            datatype: "json",
+            contentType: "html",
+            success: function (result) {
+                renderResults(result);
+            }
+        });
+        return false;
+    }
+
+    function renderResults(result){
+        $("#searchResults").html(result)
+    }
+
+</script>
