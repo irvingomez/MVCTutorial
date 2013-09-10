@@ -9,39 +9,39 @@
     @Html.ValidationSummary(true)
 
     @Html.TextBoxFor(m => m.term)
- }
 
-<input type="button" id="search" value="Search" />
+    <input type="button" id="search" value="Search" />
+}
 
 <div id="searchResults"></div>
 
+@section scripts{
+<script type="text/javascript">
+    
+    $(document).ready(function () {
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jquery")
-}    
+        $("#search").click(search);
 
-<script>
+        function search() {
+            alert("search");
+            var term = $("#term").val();
+            $.ajax({
+                url: "/Home/SearchAsync",
+                data: JSON.stringify({ term: term }),
+                type: "POST",
+                datatype: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    renderResults(result);
+                }
+            });
+            return false;
+        }
 
-    $("#search").click(search);
-
-    function search() {
-        alert("search");
-        var term = $("#term").val();
-        $.ajax({
-            url: "/Home/SearchAsync",
-            data: JSON.stringify({ term: term }),
-            type: "POST",
-            datatype: "json",
-            contentType: "html",
-            success: function (result) {
-                renderResults(result);
-            }
-        });
-        return false;
-    }
-
-    function renderResults(result){
-        $("#searchResults").html(result)
-    }
+        function renderResults(result) {
+            $("#searchResults").html(result)
+        }
+    });
 
 </script>
+}
