@@ -17,6 +17,21 @@ namespace MvcApplication1.Controllers
         {
             return View(AlbumRepository.FindAll());
         }
-        
+
+
+        public ActionResult Artist(string artist)
+        {
+            var model = new List<Album>();
+            if (string.IsNullOrEmpty(artist))
+            {
+                model = AlbumRepository.FindAll();
+            }
+            else
+            {
+                model = AlbumRepository.FindAll().FindAll(x => x.Artist.ToLower().Equals(artist.ToLower()));
+
+            }
+            return View("Index", model);
+        }
     }
 }
