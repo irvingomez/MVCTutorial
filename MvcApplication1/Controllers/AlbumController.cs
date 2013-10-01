@@ -43,5 +43,14 @@ namespace MvcApplication1.Controllers
             var result = AlbumRepository.FindAll().FindAll(x=>x.Name.ToLower().Equals(name.ToLower())).Count == 0;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Artist(string artistName)
+        {
+            if (string.IsNullOrEmpty(artistName))
+            {
+                return View("Index", AlbumRepository.FindAll());
+            }
+            return View("Index", AlbumRepository.FindAll().Where(x => x.Artist.ToLower().Equals(artistName.ToLower())));
+        }
     }
 }

@@ -309,6 +309,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Album\Add.cshtml" />
+    <Content Include="Views\Home\SearchAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

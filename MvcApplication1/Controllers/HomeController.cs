@@ -43,5 +43,13 @@ namespace MvcApplication1.Controllers
             result.Results = AlbumRepository.FindAll().Where(x => x.Name.ToLower().Contains(term.ToLower()));
             return View(result);
         }
+
+        public PartialViewResult SearchAsync(string term)
+        {
+            SearchResult result = new SearchResult();
+            result.Term = term;
+            result.Results = AlbumRepository.FindAll().Where(x => x.Name.ToLower().Contains(term.ToLower()));
+            return PartialView(result);
+        }
     }
 }

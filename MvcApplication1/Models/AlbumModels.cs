@@ -11,6 +11,7 @@ namespace MvcApplication1.Models
     {
         [Required]
         [Remote("CheckAlbumName", "Album", ErrorMessage="Album already exists")]
+        [Display(Name = "Album Name")]
         public string Name { get; set; }
         [Required]
         public string Genre { get; set; }

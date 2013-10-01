@@ -1,0 +1,11 @@
+﻿
+<h3>Search results for: @Model.Term</h3>
+
+@foreach (var album in Model.Results)
+{
+    <div>@album.Name by @album.Artist</div>
+}
+
+<p>
+    @Html.ActionLink("See all", "Index", "Album") albums.
+</p>

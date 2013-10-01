@@ -13,6 +13,13 @@ namespace MvcApplication1
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("AlbumsArtist",
+                "Albums/{artistName}",
+                new { controller="Album",
+                       action="Artist",
+                       artistName=UrlParameter.Optional
+                });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
