@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcApplication1.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var album in Model)
+{
+    <div>@album.Name by @album.Artist</div>
+}

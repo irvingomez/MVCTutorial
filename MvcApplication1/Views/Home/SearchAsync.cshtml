@@ -1,0 +1,8 @@
+﻿@model MvcApplication1.Models.SearchResult
+
+<h3>Search results for: @Model.term</h3>
+
+@foreach (var album in Model.Results)
+{
+    <div>@album.Name by @album.Artist (@album.Genre)</div>
+}

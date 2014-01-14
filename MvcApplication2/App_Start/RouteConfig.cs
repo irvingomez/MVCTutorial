@@ -5,20 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MvcApplication1
+namespace MvcApplication2
 {
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute("AlbumArtist",
-                            "Albums/{artist}",
-                            new {   controller = "Album", 
-                                    action = "Artist", 
-                                    artist = UrlParameter.Optional 
-                            });
 
             routes.MapRoute(
                 name: "Default",

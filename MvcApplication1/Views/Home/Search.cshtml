@@ -1,0 +1,43 @@
+﻿@model MvcApplication1.Models.SearchResult
+
+@{
+    ViewBag.Title = "Search";
+}
+@*  *@
+
+    <input type="text" id="term" name="term" />
+    <input type="button" id="search" value="search" />
+
+<h2>Search</h2>
+
+<div id="searchResults"></div>
+
+@section Scripts {
+<script type="text/javascript">
+    
+    $("#search").click(search);
+
+    function search() {
+        
+        var term = $("#term").val();
+        
+        $.ajax({
+            url: "/Home/SearchAsync",
+            data: JSON.stringify({ term: term }),
+            type: "POST",
+            datatype: "json",
+            contentType: "application/json",
+            success: function (result) {
+                renderResults(result);
+            }
+        });
+        return false;
+    }
+
+    function renderResults(result) {
+        $("#searchResults").html(result);
+    }
+
+</script>
+}
+

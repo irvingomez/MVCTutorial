@@ -30,6 +30,31 @@ namespace MvcApplication1.Controllers
 
             return View();
         }
+        public ActionResult Help()
+        {
+            ViewBag.Message = "Search Page.";
+            return View();
+        }
+
+        public ActionResult Search(string term)
+        {
+            ViewBag.Message = string.Format("Searched for {0}", term);
+            SearchResult result = new SearchResult();
+            result.term = term;
+            result.Results = AlbumRepository.FindAll()
+                .Where(x => x.Name.ToLower().Contains(term.ToLower()));
+            return View(result);
+        }
+
+        public PartialViewResult SearchAsync(string term)
+        {
+            ViewBag.Message = string.Format("Searched for {0}", term);
+            SearchResult result = new SearchResult();
+            result.term = term;
+            result.Results = AlbumRepository.FindAll()
+                .Where(x => x.Name.ToLower().Contains(term.ToLower()));
+            return PartialView(result);
+        }
 
     }
 }
