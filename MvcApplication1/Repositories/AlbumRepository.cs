@@ -15,10 +15,10 @@ namespace MvcApplication1.Repositories
             if (_albums == null)
             {
                 _albums = new List<Album>();
-                _albums.Add(new Album() { Artist = "Led Zeppelin", Genre = "Rock", Name = "Led Zeppelin II" });
-                _albums.Add(new Album() { Artist = "Queen", Genre = "Rock", Name = "Live Killers" });
-                _albums.Add(new Album() { Artist = "Pink Floyd", Genre = "Rock", Name = "The Wall" });
-                _albums.Add(new Album() { Artist = "Queen", Genre = "Rock", Name = "Made in Heaven" });
+                _albums.Add(new Album() { Artist = "Led Zeppelin", Genre = "Rock", Name = "Led Zeppelin II", Price=15 });
+                _albums.Add(new Album() { Artist = "Queen", Genre = "Rock", Name = "Live Killers", Price = 15 });
+                _albums.Add(new Album() { Artist = "Pink Floyd", Genre = "Rock", Name = "The Wall", Price = 15 });
+                _albums.Add(new Album() { Artist = "Queen", Genre = "Rock", Name = "Made in Heaven", Price = 15 });
             }
             return _albums;
         }

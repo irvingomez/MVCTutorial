@@ -31,5 +31,22 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
+        public ActionResult Help()
+        {
+            return View();
+        }
+
+        public ActionResult Search(string Term)
+        {
+            SearchResult search = new SearchResult();
+            search.Term = Term;
+            search.Results = AlbumRepository
+                                .FindAll()
+                                    .Where(x => x.Name.ToLower()
+                                        .Contains(Term.ToLower())
+                                        || x.Artist.ToLower()
+                                            .Contains(Term.ToLower()));
+            return View(search);
+        }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model MvcApplication1.Models.SearchResult
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    
+    @Html.TextBoxFor(m=>m.Term)
+    <input type="submit" value="Search" />
+}
+
+<h3>Search Results for: @Model.Term</h3>
+
+@foreach (var album in Model.Results)
+{
+    <div>@album.Name by @album.Artist (@album.Genre)</div>
+}
