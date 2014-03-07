@@ -48,5 +48,13 @@ namespace MvcApplication1.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Artist(string name)
+        {
+            return View("Index", AlbumRepository
+                                .FindAll()
+                                    .Where(x => x.Artist.ToLower()
+                                                    .Equals(name.ToLower())));
+        }
+
     }
 }
